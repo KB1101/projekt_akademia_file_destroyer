@@ -1,0 +1,133 @@
+﻿<Window x:Class="projekt_akademia_file_destroyer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:src="clr-namespace:projekt_akademia_file_destroyer"
+        Title="File Destroyer" Height="447" Width="611">
+
+
+    <Window.Resources>
+        <ObjectDataProvider x:Key="FindCriteria" ObjectType="{x:Type src:RadioButtonsOptions}" />
+        <src:RadioButtonCheckedConverter x:Key="RadioButtonCheckedConverter" />
+    </Window.Resources>
+
+
+    <Grid >
+        <DataGrid Name ="dataGrid" 
+                  Margin="180,10,10,12" 
+                  CanUserAddRows="False"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False"
+               >
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="Auto"/>
+                <DataGridTextColumn Header="File" Binding="{Binding fileName}" Width="*"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding status}" Width="*"/>
+
+            </DataGrid.Columns>
+
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding fileDetails}" Margin="10" />
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+
+
+
+        <Button Name ="SE_button" 
+                Content="Select Files" 
+                HorizontalAlignment="Left" 
+                Margin="10,10,0,0" 
+                VerticalAlignment="Top" 
+                Width="165" 
+                Height="22" 
+                Click="SE_button_Click"/>
+        <GroupBox Header="Erase Method"
+                  HorizontalAlignment="Left" 
+                  Margin="10,37,0,0"
+                  VerticalAlignment="Top"
+                  Height="126"
+                  Width="165">
+
+
+
+
+
+            <StackPanel Margin="0,0,0,1">
+
+                <RadioButton GroupName="EnumGroup" Margin="0,5" 
+                            IsChecked="{Binding EnumProperty, Converter={StaticResource RadioButtonCheckedConverter}, 
+                            ConverterParameter={x:Static src:MethodEnum.Random}}">
+                    <TextBlock TextWrapping="Wrap" Text="Random" />
+                </RadioButton>
+
+                <RadioButton GroupName="EnumGroup"  Margin="0,5" 
+                            IsChecked="{Binding EnumProperty, Converter={StaticResource RadioButtonCheckedConverter}, 
+                            ConverterParameter={x:Static src:MethodEnum.Zeros}}">
+                    <TextBlock TextWrapping="Wrap" Text="Zeros (only)"/>
+                </RadioButton>
+
+                <RadioButton GroupName="EnumGroup" Margin="0,5" 
+                            IsChecked="{Binding EnumProperty, Converter={StaticResource RadioButtonCheckedConverter}, 
+                            ConverterParameter={x:Static src:MethodEnum.Ones}}">
+                    <TextBlock TextWrapping="Wrap" Text="Ones (only)"/>
+                </RadioButton>
+
+                <RadioButton GroupName="EnumGroup" Margin="0,5" 
+                            IsChecked="{Binding EnumProperty, Converter={StaticResource RadioButtonCheckedConverter}, 
+                            ConverterParameter={x:Static src:MethodEnum.ZerosOnes}}">
+                    <TextBlock TextWrapping="Wrap" Text="Zeros and Ones"/>
+                </RadioButton>
+            </StackPanel>
+
+        </GroupBox>
+
+
+        <Button Content="Delete Files ..."
+                HorizontalAlignment="Left"
+                Margin="10,299,0,0"
+                VerticalAlignment="Top"
+                Width="165" Click="Delete_Files_Button_Click"/>
+        <Button Content="Exclude File" 
+                HorizontalAlignment="Left" 
+                Margin="10,272,0,0" 
+                VerticalAlignment="Top" 
+                Width="165" 
+                Click="Exclude_File_Button_Click"/>
+        <Grid>
+            <ProgressBar Name="pBar" HorizontalAlignment="Left" 
+                     Height="26" 
+                     Margin="10,334,0,0" 
+                     VerticalAlignment="Top" 
+                     Width="165" ValueChanged="pBar_ValueChanged"/>
+            <TextBlock Text="{Binding ElementName=pBar, Path=Value, StringFormat={}{0:0}%}" Margin="78,334,0,0" FontSize="16" HorizontalAlignment="Left" Width="97" Height="26" VerticalAlignment="Top" />
+            <Button Content="About" Margin="100,376,0,0" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Click="Button_Click"/>
+        </Grid>
+        <GroupBox Header="Fast Erase" 
+                  HorizontalAlignment="Left"
+                  Margin="10,168,0,0" 
+                  VerticalAlignment="Top" 
+                  Height="88" 
+                  Width="165"
+                  >
+            <StackPanel Margin="0,0,0,1">
+                <RadioButton GroupName="BooleanGroup" Margin="0,5" 
+                            IsChecked="{Binding BooleanProperty, Converter={StaticResource RadioButtonCheckedConverter}, 
+                            ConverterParameter={x:Static src:MainWindow.BooleanTrue}}">
+                    <TextBlock TextWrapping="Wrap" Text="Enabled" />
+                </RadioButton>
+
+                <RadioButton GroupName="BooleanGroup" Margin="0,5" 
+                            IsChecked="{Binding BooleanProperty, Converter={StaticResource RadioButtonCheckedConverter}, 
+                            ConverterParameter={x:Static src:MainWindow.BooleanFalse}}">
+                    <TextBlock TextWrapping="Wrap" Text="Disabled"/>
+                </RadioButton>
+                <TextBlock TextWrapping="Wrap" Text="For large files use only." VerticalAlignment="Top" Height="18" FontSize="9" FontStyle="Italic" Margin="10,0,0,0" />
+            </StackPanel>
+        </GroupBox>
+
+
+    </Grid>
+</Window>

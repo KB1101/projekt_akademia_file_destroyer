@@ -1,0 +1,12 @@
+﻿<Window x:Class="projekt_akademia_file_destroyer.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="About" Height="303" Width="300">
+    <Grid>
+        <Button Content="Close" Margin="207,238,0,0" Click="Button_Click" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
+        <TextBlock Margin="10,10,10,222" TextWrapping="Wrap" Text="File Destroyer" FontSize="22" FontWeight="Bold"/>
+        <TextBlock Margin="10,48,10,129" TextWrapping="Wrap" FontSize="13"><Run Text="Description:"/><LineBreak/><Run Text="This small program removes a files from your disk without leaving any traces. It overwrites files with random/ones/zeros data before remove. No setup is needed."/></TextBlock>
+        <TextBlock Margin="10,189,0,0" TextWrapping="Wrap" Height="74" VerticalAlignment="Top" HorizontalAlignment="Left" Width="176"><Run Text="Author: Kornel Kopko"/><LineBreak/><Run Text="Email: kornelgcc@gmail.com"/><LineBreak/><Run/><LineBreak/><Run Text="Copyright"/><Run Text=" 2016"/></TextBlock>
+
+    </Grid>
+</Window>
